@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+
+	<DeviceName>iPhone 15 Pro</DeviceName>
+    <RuntimeIdentifier>iossimulator-arm64</RuntimeIdentifier>
+    <MtouchExtraArgs>--device=:v2:runtime=com.apple.CoreSimulator.SimRuntime.iOS-18-2,devicetype=com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro</MtouchExtraArgs>
+
 		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
@@ -19,7 +24,11 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<MtouchLink>SdkOnly</MtouchLink>
 
+		<PublishTrimmed>true</PublishTrimmed>
+
+		<LinkMode>SdkOnly</LinkMode>
 		<!-- Display name -->
 		<ApplicationTitle>Shoppy</ApplicationTitle>
 
@@ -36,6 +45,9 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+
+		    <IosLinkerBehavior>LinkSDKOnly</IosLinkerBehavior>
+
 	</PropertyGroup>
 
 	<ItemGroup>
